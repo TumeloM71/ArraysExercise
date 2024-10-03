@@ -54,4 +54,9 @@ public class Vehicle {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public String toString(){
+        return "Name:"+ this.getMakeModel()+"\tColor:"+ this.getColor()
+                +"\tPrice:"+ this.getPrice()+"\tMileage:"+ this.getOdometerReading();
+    }
 }

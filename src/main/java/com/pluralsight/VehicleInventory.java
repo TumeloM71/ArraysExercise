@@ -102,8 +102,12 @@ public class VehicleInventory {
                 case 2:
                     findVehiclesByModel(cars);
                     break;
+                case 3:
+                    findByPriceRange(cars);
+                    break;
                 case 4:
                     findVehiclesColor(cars);
+                    break;
                 case 5:
                     addAVehicle(cars);
                     break;
@@ -115,13 +119,12 @@ public class VehicleInventory {
 
 public static void listAllVehicles( Vehicle[] cars){
     for (int i=0; i<vehicleCount; i++)
-        System.out.printf("Name: %s%n",cars[i].getMakeModel());
+        System.out.println(cars[i].toString());
 
     System.out.println();
     }
 
 public static void findVehiclesByModel(Vehicle[] cars){
-
     Scanner input  = new Scanner(System.in) ;
     System.out.println("Enter the make/model you're looking for");
     String model = input.nextLine().trim();
@@ -133,13 +136,12 @@ public static void findVehiclesByModel(Vehicle[] cars){
         i++;
     }
     if (vehicleFound == true) {
-        System.out.println("Vehicle found");
-        System.out.println();
+        System.out.println("Vehicle found: "+cars[i-1].toString());
     }
     else {
         System.out.println("Vehicle not found");
-        System.out.println();
     }
+    System.out.println();
 }
 
     public static void findVehiclesColor(Vehicle[] cars){
@@ -153,13 +155,29 @@ public static void findVehiclesByModel(Vehicle[] cars){
        for (i=0; i<vehicleCount; i++){
             if (cars[i].getColor().equals(color))
                 System.out.println(cars[i].getColor()+" "+cars[i].getMakeModel());
-                System.out.println();
                 vehicleFound = true;
         }
         if (!vehicleFound) {
             System.out.println("Vehicle not found.");
-            System.out.println();
         }
+        System.out.println();
+    }
+    public static void findByPriceRange(Vehicle[] cars){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the minimum: ");
+        double min = input.nextDouble();
+        System.out.print("Enter the maximum: ");
+        double max = input.nextDouble();
+        boolean vehicleFound = false;
+        for (int i=0; i<vehicleCount; i++){
+            if (cars[i].getPrice()<=max && cars[i].getPrice()>=min) {
+                System.out.println(cars[i].toString());
+                vehicleFound = true;
+            }
+        }
+        if (!vehicleFound)
+            System.out.println("Not found");
+        System.out.println();
     }
 
 public static void addAVehicle(Vehicle[] cars){
@@ -181,6 +199,7 @@ public static void addAVehicle(Vehicle[] cars){
         System.out.println("Car Added"); }
      else
          System.out.println("Inventory is full. Vehicle could not be added");
+    System.out.println();
 
 }
 }

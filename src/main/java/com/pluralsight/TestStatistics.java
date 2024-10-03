@@ -29,6 +29,7 @@ public class TestStatistics {
         return sum/scores.length;
     }
 
+    //Median of an even set is the mean of the two middle values
     public static int getMedian(int[] scores){
         int midValueOne = scores[scores.length/2];
         int midValueTwo = scores[scores.length/2-1];
